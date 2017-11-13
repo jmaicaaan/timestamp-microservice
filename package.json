@@ -1,7 +1,7 @@
 {
-  "name": "express-starter",
+  "name": "timestamp-microservice",
   "version": "1.0.0",
-  "description": "This repository gives the developer an Express Starter to kick off there development fast",
+  "description": "In completion of FreeCodeCamp back end certificate - A timestamp microservice written in node.js",
   "main": "index.js",
   "scripts": {
     "start": "node app/index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jmaicaaan/express-starter.git"
+    "url": "git+https://github.com/jmaicaaan/timestamp-microservice.git"
   },
   "author": "JM Santos",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jmaicaaan/express-starter/issues"
+    "url": "https://github.com/jmaicaaan/timestamp-microservice/issues"
   },
-  "homepage": "https://github.com/jmaicaaan/express-starter#readme",
+  "homepage": "https://github.com/jmaicaaan/timestamp-microservice#readme",
   "dependencies": {
     "bluebird": "^3.5.1",
     "express": "^4.16.2"
