@@ -1,12 +1,18 @@
 function timestampHandler(req, res) {
   let date = req.query.date;
   if (date) {
-    if (!isNaN(date)) {
-      res.send(unixToNaturalDate(date));
-      return;
-    } else {
-      res.send(naturalDateToUnix(date));
-      return;
+    try {
+      if (!isNaN(date)) {
+        res.send(unixToNaturalDate(date));
+        return;
+      } else {
+        res.send(naturalDateToUnix(date));
+        return;
+      }
+    } catch (error) {
+      return res
+        .status(500)
+        .send(returnNull());
     }
   }
   throw 'No passed date parameter';
@@ -44,6 +50,10 @@ function getFormattedNaturalDate(date) {
     return x;
   }
   throw 'Invalid date';
+}
+
+function returnNull() {
+  return { unix: null, naturalDate: null };
 }
 
 export { timestampHandler } 
