@@ -23,8 +23,9 @@ function unixToNaturalDate(unixDate) {
 
 function naturalDateToUnix(naturalDate) {
   if (isNaN(naturalDate) && Date.parse(naturalDate)) {
+    naturalDate += ' 00:00:00 +0000'
     let unix = Date.parse(naturalDate) / 1000;
-    return { unix, naturalDate };
+    return { unix, naturalDate: getFormattedNaturalDate(new Date(naturalDate)) };
   }
   throw 'Invalid date';
 }
@@ -33,13 +34,14 @@ function getFormattedNaturalDate(date) {
   let months = ['January', 'February', 'March', 'April', 'May', 'June', 
     'July', 'August', 'September', 'October', 'November', 'December'];
   if (date && typeof date === 'object') {
-    let dateMonth = months[date.getMonth()];
-    let dateDay = date.getDate();
-    let dateYear = date.getFullYear();
+    let dateMonth = months[date.getUTCMonth()];
+    let dateDay = date.getUTCDate();
+    let dateYear = date.getUTCFullYear();
     if (!dateMonth || !dateDay || !dateYear) {
       throw 'Invalid date';
     }
-    return [dateMonth, dateDay + ',', dateYear].join(' ');
+    let x = [dateMonth, dateDay + ',', dateYear].join(' ');
+    return x;
   }
   throw 'Invalid date';
 }

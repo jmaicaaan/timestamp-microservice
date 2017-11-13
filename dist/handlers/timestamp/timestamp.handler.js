@@ -31,8 +31,9 @@ function unixToNaturalDate(unixDate) {
 
 function naturalDateToUnix(naturalDate) {
   if (isNaN(naturalDate) && Date.parse(naturalDate)) {
+    naturalDate += ' 00:00:00 +0000';
     var unix = Date.parse(naturalDate) / 1000;
-    return { unix: unix, naturalDate: naturalDate };
+    return { unix: unix, naturalDate: getFormattedNaturalDate(new Date(naturalDate)) };
   }
   throw 'Invalid date';
 }
@@ -40,13 +41,14 @@ function naturalDateToUnix(naturalDate) {
 function getFormattedNaturalDate(date) {
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   if (date && (typeof date === 'undefined' ? 'undefined' : _typeof(date)) === 'object') {
-    var dateMonth = months[date.getMonth()];
-    var dateDay = date.getDate();
-    var dateYear = date.getFullYear();
+    var dateMonth = months[date.getUTCMonth()];
+    var dateDay = date.getUTCDate();
+    var dateYear = date.getUTCFullYear();
     if (!dateMonth || !dateDay || !dateYear) {
       throw 'Invalid date';
     }
-    return [dateMonth, dateDay + ',', dateYear].join(' ');
+    var x = [dateMonth, dateDay + ',', dateYear].join(' ');
+    return x;
   }
   throw 'Invalid date';
 }

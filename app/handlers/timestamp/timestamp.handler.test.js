@@ -8,7 +8,7 @@ describe('#timestamp', () => {
       app.close();
     })
     let timestamp = {
-      unix: 863798400,
+      unix: 863827200,
       naturalDate: 'May 17, 1997'
     };
     it('should convert unix timestamp to natural date', done => {
