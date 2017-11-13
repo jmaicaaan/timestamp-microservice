@@ -7,8 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 function timestampHandler(req, res) {
-  var date = req.params.date;
-
+  var date = req.query.date;
   if (date) {
     if (!isNaN(date)) {
       res.send(unixToNaturalDate(date));
@@ -18,7 +17,7 @@ function timestampHandler(req, res) {
       return;
     }
   }
-  res.send('No passed date parameter');
+  throw 'No passed date parameter';
 }
 
 function unixToNaturalDate(unixDate) {
@@ -35,7 +34,7 @@ function naturalDateToUnix(naturalDate) {
     var unix = Date.parse(naturalDate) / 1000;
     return { unix: unix, naturalDate: naturalDate };
   }
-  return 'Invalid date';
+  throw 'Invalid date';
 }
 
 function getFormattedNaturalDate(date) {
@@ -45,11 +44,11 @@ function getFormattedNaturalDate(date) {
     var dateDay = date.getDate();
     var dateYear = date.getFullYear();
     if (!dateMonth || !dateDay || !dateYear) {
-      return;
+      throw 'Invalid date';
     }
     return [dateMonth, dateDay + ',', dateYear].join(' ');
   }
-  return;
+  throw 'Invalid date';
 }
 
 exports.timestampHandler = timestampHandler;

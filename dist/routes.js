@@ -9,5 +9,5 @@ var _index = require('./handlers/index');
 
 function routes(app) {
   app.get('/', _index.introHandler);
-  app.get('/timestamp/:date', _index.timestampHandler);
+  app.get('/timestamp?:date', _index.timestampHandler);
 };
