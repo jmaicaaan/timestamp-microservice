@@ -4,10 +4,11 @@
   "description": "In completion of FreeCodeCamp back end certificate - A timestamp microservice written in node.js",
   "main": "index.js",
   "scripts": {
-    "start": "node app/index.js",
+    "start": "node dist/index.js",
     "watch": "nodemon --exec npm run babel-node -- app/index.js",
-    "build": "babel lib -d dist --presets es2015,stage-2",
-    "babel-node": "babel-node --presets es2015"
+    "build": "babel app -d dist --presets es2015",
+    "babel-node": "babel-node --presets es2015",
+    "prestart": "npm run build"
   },
   "repository": {
     "type": "git",
